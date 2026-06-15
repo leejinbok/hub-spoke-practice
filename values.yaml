@@ -1,0 +1,20 @@
+# values.yaml
+teams:
+  - name: team-alpha
+    repoURL: 'https://gitlab.com/your-org/team-alpha-repo.git'
+    cpuReq: "1"
+    memReq: "1Gi"
+    cpuLim: "2"
+    memLim: "2Gi"
+
+  - name: team-beta
+    repoURL: 'https://gitlab.com/your-org/team-beta-repo.git'
+    cpuReq: "500m"
+    memReq: "512Mi"
+    cpuLim: "1"
+    memLim: "1Gi"
+
+  - name: team-alpha1
+    repoURL: 'https://gitlab.com/your-org/team-alpha-repo.git'
+    ssoGroup: 'TeamAlpha_SSO_Group' # <-- Tell Helm which SSO group owns this
+    cpuReq: "1"

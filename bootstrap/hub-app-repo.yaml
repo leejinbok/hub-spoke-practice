@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hub-platform-bootstrap
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://gitlab.com/your-org/hub-repo.git'
+    path: '/' # Path to where Chart.yaml lives
+    targetRevision: HEAD
+    helm:
+      # ArgoCD will automatically read the default values.yaml in the repo,
+      # but you can explicitly define value files here if you have multiple environments.
+      valueFiles:
+      - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,23 @@
+# templates/app-projects.yaml
+{{- range .Values.teams }}
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .name }}-project
+  namespace: argocd
+spec:
+  description: "Project for {{ .name }}"
+  sourceRepos:
+  - {{ .repoURL | quote }}
+  destinations:
+  - namespace: {{ .name }}-ns
+    server: https://kubernetes.default.svc
+  
+  # The RBAC we discussed earlier, dynamically injected
+  roles:
+  - name: developer
+    policies:
+    - p, proj:{{ .name }}-project:developer, applications, get, {{ .name }}-project/*, allow
+    - p, proj:{{ .name }}-project:developer, applications, sync, {{ .name }}-project/*, allow
+---
+{{- end }}

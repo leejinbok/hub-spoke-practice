@@ -1,0 +1,21 @@
+{{- range .Values.teams }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .name }}-ns
+  labels:
+    jin: wuz-here
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: {{ .name }}-compute-quota
+  namespace: {{ .name }}-ns
+spec:
+  hard:
+    requests.cpu: {{ .cpuReq | quote }}
+    requests.memory: {{ .memReq }}
+    limits.cpu: {{ .cpuLim | quote }}
+    limits.memory: {{ .memLim }}
+---
+{{- end }}

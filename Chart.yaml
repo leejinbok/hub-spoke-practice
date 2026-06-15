@@ -1,0 +1,11 @@
+apiVersion: v2
+name: k8s-resource-mgmt-practice-time
+description: A basic Helm chart for dynamically provisioning and managing spoke Application, Namespaces, and Resources
+type: application
+sources:
+- https://argo-cd.readthedocs.io/en/latest/user-guide/application-specification/
+- http://argo-cd.readthedocs.io/en/latest/operator-manual/project-specification/
+- https://kubernetes.io/docs/concepts/policy/resource-quotas/
+- https://kubernetes.io/docs/tutorials/cluster-management/namespaces-walkthrough/
+version: 0.0.1
+appVersion: "0.0.1"
