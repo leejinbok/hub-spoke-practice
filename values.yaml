@@ -14,7 +14,7 @@ teams:
     cpuLim: "1"
     memLim: "1Gi"
 
-  - name: team-alpha1
-    repoURL: 'https://gitlab.com/your-org/team-alpha-repo.git'
-    ssoGroup: 'TeamAlpha_SSO_Group' # <-- Tell Helm which SSO group owns this
-    cpuReq: "1"
+  # - name: team-alpha1
+  #   repoURL: 'https://gitlab.com/your-org/team-alpha-repo.git'
+  #   ssoGroup: 'TeamAlpha_SSO_Group' 
+  #   cpuReq: "1"
