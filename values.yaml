@@ -1,14 +1,14 @@
 # values.yaml
 teams:
-  - name: team-alpha
-    repoURL: 'https://gitlab.com/your-org/team-alpha-repo.git'
+  - name: team-one
+    repoURL: 'https://github.com/leejinbok/spoke-1.git'
     cpuReq: "1"
     memReq: "1Gi"
     cpuLim: "2"
     memLim: "2Gi"
 
-  - name: team-beta
-    repoURL: 'https://gitlab.com/your-org/team-beta-repo.git'
+  - name: team-two
+    repoURL: 'https://github.com/leejinbok/spoke-2.git'
     cpuReq: "500m"
     memReq: "512Mi"
     cpuLim: "1"
