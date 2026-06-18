@@ -4,19 +4,19 @@ teams:
     repoURL: 'https://github.com/leejinbok/spoke-1.git'
     targetPath: '.'
     targetRevision: 'main'
-    cpuReq: "1"
-    memReq: "1Gi"
-    cpuLim: "2"
-    memLim: "2Gi"
+    cpuReq: "250m"
+    memReq: "250Mi"
+    cpuLim: "250m"
+    memLim: "250Mi"
 
   - name: team-two
     repoURL: 'https://github.com/leejinbok/spoke-2.git'
     targetPath: '.'
     targetRevision: 'main'
-    cpuReq: "500m"
-    memReq: "512Mi"
-    cpuLim: "1"
-    memLim: "1Gi"
+    cpuReq: "250m"
+    memReq: "250Mi"
+    cpuLim: "250m"
+    memLim: "250Mi"
 
   # - name: team-alpha1
   #   repoURL: 'https://gitlab.com/your-org/team-alpha-repo.git'

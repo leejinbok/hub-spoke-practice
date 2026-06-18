@@ -7,6 +7,11 @@ kubectl create namespace argocd
 kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
+#### It uses the following images:
+- quay.io/argoproj/argocd:v3.4.4
+- ghcr.io/dexidp/dex:v2.45.0
+- public.ecr.aws/docker/library/redis:8.2.3-alpine
+
 #### Use the following command to retrieve password:
 
 ```
