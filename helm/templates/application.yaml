@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: {{ .name }}-app
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/tracking-id: "{{ .name }}-app"
 spec:
   project: {{ .name }}-project 
   
