@@ -10,7 +10,7 @@ spec:
   source: 
     repoURL: {{ .repoURL | quote }}
     path: {{ .targetPath | quote }}
-    targetRevision: HEAD
+    targetRevision: main
   
   destination: 
     server: https://kubernetes.default.svc
