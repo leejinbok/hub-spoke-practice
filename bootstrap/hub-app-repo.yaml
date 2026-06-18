@@ -7,11 +7,9 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/leejinbok/hub-spoke-practice.git'
-    path: '/' # Path to where Chart.yaml lives
+    path: 'helm' # Path to where Chart.yaml lives
     targetRevision: HEAD
     helm:
-      # ArgoCD will automatically read the default values.yaml in the repo,
-      # but you can explicitly define value files here if you have multiple environments.
       valueFiles:
       - values.yaml
   destination:
