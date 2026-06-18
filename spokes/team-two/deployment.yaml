@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app 
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: application
+        image: nginx:1.25-alpine
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "100m"
+            memory: "250Mi"
+        command: ["/bin/sh", "-c"]
+        args: 
+        - |
+          echo '<div style="text-align:center; padding:50px; font-family:sans-serif;">
+                  <h1>Welcome to team-two spoke! </h1>
+                  <p>This message was generated purely from the Deployment manifest.</p>
+                </div>' > /usr/share/nginx/html/index.html
+          
+          exec nginx -g 'daemon off;'

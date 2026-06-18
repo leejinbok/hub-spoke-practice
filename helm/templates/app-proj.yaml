@@ -8,11 +8,9 @@ spec:
   description: "Automated project creation for {{ .name }}"
   sourceRepos:
   - {{ .repoURL | quote }}
-  
   destinations:
   - namespace: {{ .name }}-ns
     server: https://kubernetes.default.svc
-  
   namespaceResourceWhitelist:
   - group: 'apps'
     kind: Deployment
@@ -20,18 +18,5 @@ spec:
     kind: Service
   - group: ''
     kind: ConfigMap
-    
-  # Dynamically generate the RBAC role for this specific team
-  # roles:
-  # - name: developer
-  #   description: "Read and Sync access for {{ .name }}"
-  #   groups:
-  #   # Binds the SSO group from values.yaml to this role
-  #   - {{ .ssoGroup | quote }} 
-  #   policies:
-  #   # Injects the team name into the Casbin policy string!
-  #   - p, proj:{{ .name }}-project:developer, applications, get, {{ .name }}-project/*, allow
-  #   - p, proj:{{ .name }}-project:developer, applications, sync, {{ .name }}-project/*, allow
-  #   - p, proj:{{ .name }}-project:developer, logs, get, {{ .name }}-project/*, allow
 ---
 {{- end }}

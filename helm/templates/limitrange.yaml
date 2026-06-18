@@ -1,0 +1,21 @@
+{{- range .Values.teams }}
+
+{{- if .limitRange }}
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: {{ .name }}-default-limits
+  namespace: {{ .name }}-ns
+spec:
+  limits:
+  - type: Container
+    default:
+      cpu: {{ .limitRange.default.cpu | default "500m" | quote }}
+      memory: {{ .limitRange.default.memory | default "512Mi" | quote }}
+    defaultRequest:
+      cpu: {{ .limitRange.defaultRequest.cpu | default "500m" | quote }}
+      memory: {{ .limitRange.defaultRequest.memory | default "512Mi" | quote }}
+---
+{{- end }}
+
+{{- end }}

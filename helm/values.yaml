@@ -1,19 +1,39 @@
 # values.yaml
 teams:
   - name: team-one
-    repoURL: 'https://github.com/leejinbok/spoke-1.git'
-    targetPath: '.'
+    repoURL: 'https://github.com/leejinbok/hub-spoke-practice.git'
+    targetPath: 'spokes/team-one'
     targetRevision: 'main'
-    cpuReq: "250m"
-    memReq: "250Mi"
-    cpuLim: "250m"
-    memLim: "250Mi"
+    resourceQuota:
+      requests:
+        cpu: "500m"
+        memory: "500Mi"
+      limits:
+        cpu: "500m"
+        memory: "500Mi"
+    limitRange:
+      default:
+        cpu: "500m"
+        memory: "500Mi"
+      defaultRequest:
+        cpu: "250m"
+        memory: "500Mi"
 
   - name: team-two
-    repoURL: 'https://github.com/leejinbok/spoke-2.git'
-    targetPath: '.'
+    repoURL: 'https://github.com/leejinbok/hub-spoke-practice.git'
+    targetPath: 'spokes/team-two'
     targetRevision: 'main'
-    cpuReq: "250m"
-    memReq: "250Mi"
-    cpuLim: "250m"
-    memLim: "250Mi"
+    resourceQuota:
+      requests:
+        cpu: "1"
+        memory: "1Gi"
+      limits:
+        cpu: "2"
+        memory: "2Gi"
+    limitRange:
+      default:
+        cpu: "2"
+        memory: "2Gi"
+      defaultRequest:
+        cpu: "1"
+        memory: "1Gi"

@@ -1,0 +1,18 @@
+{{- range .Values.teams }}
+
+{{- if .resourceQuota }}
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: {{ .name }}-resource-quota
+  namespace: {{ .name }}-ns
+spec:
+  hard:
+    requests.cpu: {{ .resourceQuota.requests.cpu | default "500m" | quote }}
+    requests.memory: {{ .resourceQuota.requests.memory | default "512Mi" | quote }}
+    limits.cpu: {{ .resourceQuota.limits.cpu | default "500m" | quote }}
+    limits.memory: {{ .resourceQuota.limits.memory | default "512Mi" | quote }}
+---
+{{- end }}
+
+{{- end }}
