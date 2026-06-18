@@ -1,6 +1,15 @@
 #!/bin/bash
 
-
+# ==========================================
+# TERMINAL COLORS
+# ==========================================
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color (This is crucial to reset the terminal!)
 # ==========================================
 # Set Environment Variables
 # ==========================================
@@ -29,7 +38,15 @@ kubectl patch secret argocd-secret -n argocd -p '{"stringData": { "admin.passwor
 kubectl rollout restart deployment/argocd-server -n argocd
 kubectl rollout status deployment/argocd-server -n argocd --timeout=120s
 
-echo "🔌 Step 5: Port-forwarding ArgoCD UI to localhost:$PORT in the background..."
+echo -e "${YELLOW}Bootstrapping the Hub Application...${NC}"
+if [ -f "bootstrap/hub.yaml" ]; then
+  kubectl apply -f bootstrap/hub.yaml
+  echo -e "${GREEN}   -> Hub Application successfully submitted to the cluster!${NC}"
+else
+  echo -e "${RED}   -> WARNING: bootstrap/hub.yaml not found. Are you running this from the repo root?${NC}"
+fi
+
+echo "Port-forwarding ArgoCD UI to localhost:$PORT in the background..."
 # Quietly kill any old port-forward process that might be hogging this port
 lsof -ti:$PORT | xargs kill -9 2>/dev/null || true
 
