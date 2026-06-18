@@ -3,6 +3,7 @@ teams:
   - name: team-one
     repoURL: 'https://github.com/leejinbok/spoke-1.git'
     targetPath: '.'
+    targetRevision: 'main'
     cpuReq: "1"
     memReq: "1Gi"
     cpuLim: "2"
@@ -11,6 +12,7 @@ teams:
   - name: team-two
     repoURL: 'https://github.com/leejinbok/spoke-2.git'
     targetPath: '.'
+    targetRevision: 'main'
     cpuReq: "500m"
     memReq: "512Mi"
     cpuLim: "1"
