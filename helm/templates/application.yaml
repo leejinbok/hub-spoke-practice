@@ -9,6 +9,7 @@ spec:
   description: "Project for {{ .name }}"
   sourceRepos:
   - {{ .repoURL | quote }}
+  - {{ .targetPath | quote }}
   destinations:
   - namespace: {{ .name }}-ns
     server: https://kubernetes.default.svc
