@@ -2,12 +2,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  # Creates: team-alpha-project
   name: {{ .name }}-project
   namespace: argocd
 spec:
-  description: "Automated project for {{ .name }}"
-  
+  description: "Automated project creation for {{ .name }}"
   sourceRepos:
   - {{ .repoURL | quote }}
   
