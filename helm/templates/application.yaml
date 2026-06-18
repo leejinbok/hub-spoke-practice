@@ -1,7 +1,7 @@
 # templates/app-projects.yaml
 {{- range .Values.teams }}
 apiVersion: argoproj.io/v1alpha1
-kind: AppProject
+kind: Application
 metadata:
   name: {{ .name }}-project
   namespace: argocd
