@@ -17,8 +17,3 @@ teams:
     memReq: "250Mi"
     cpuLim: "250m"
     memLim: "250Mi"
-
-  # - name: team-alpha1
-  #   repoURL: 'https://gitlab.com/your-org/team-alpha-repo.git'
-  #   ssoGroup: 'TeamAlpha_SSO_Group' 
-  #   cpuReq: "1"
