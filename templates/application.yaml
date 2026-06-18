@@ -13,11 +13,10 @@ spec:
   - namespace: {{ .name }}-ns
     server: https://kubernetes.default.svc
   
-  # The RBAC we discussed earlier, dynamically injected
-  roles:
-  - name: developer
-    policies:
-    - p, proj:{{ .name }}-project:developer, applications, get, {{ .name }}-project/*, allow
-    - p, proj:{{ .name }}-project:developer, applications, sync, {{ .name }}-project/*, allow
+  # roles:
+  # - name: spoke
+  #   policies:
+  #   - p, proj:{{ .name }}-project:developer, applications, get, {{ .name }}-project/*, allow
+  #   - p, proj:{{ .name }}-project:developer, applications, sync, {{ .name }}-project/*, allow
 ---
 {{- end }}
