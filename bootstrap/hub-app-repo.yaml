@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://gitlab.com/your-org/hub-repo.git'
+    repoURL: 'https://github.com/leejinbok/hub-spoke-practice.git'
     path: '/' # Path to where Chart.yaml lives
     targetRevision: HEAD
     helm:
