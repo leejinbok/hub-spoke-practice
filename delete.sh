@@ -1,16 +1,14 @@
 #!/bin/bash
 
-echo "🧹 Starting complete ArgoCD and Hub-and-Spoke teardown..."
 # ==========================================
 # TERMINAL COLORS
 # ==========================================
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
 CYAN='\033[0;36m'
 BOLD='\033[1m'
-NC='\033[0m' # No Color (This is crucial to reset the terminal!)
+NC='\033[0m' # No Color
 # ==========================================
 # Set Environment Variables
 # ==========================================
@@ -18,26 +16,33 @@ PORT="8080"
 SPOKE_NAMESPACES="team-one-ns team-two-ns" 
 # ==========================================
 
-echo "Step 1: Stopping background port-forwarding..."
-# Find and kill the process holding the port, suppress errors if none exist
-lsof -ti:$PORT | xargs kill -9 2>/dev/null || echo "   -> No port-forward currently running on $PORT."
+echo -e "${BOLD}Starting ArgoCD teardown...${NC}\n"
 
-echo "Step 2: Deleting Spoke team namespaces..."
+echo -e "${CYAN}Step 1: Stopping background port-forwarding...${NC}"
+
+lsof -ti:$PORT | xargs kill -9 2>/dev/null || echo -e "${YELLOW}   -> No port-forward currently running on $PORT.${NC}"
+
+echo -e "${CYAN}Step 2: Deleting Spoke team namespaces...${NC}"
 for ns in $SPOKE_NAMESPACES; do
-  echo "   -> Removing namespace: $ns"
+  echo -e "   -> Removing namespace: ${YELLOW}$ns${NC}"
   kubectl delete namespace $ns --ignore-not-found=true || true
 done
 
-echo "Uninstalling ArgoCD controller components..."
+echo -e "${CYAN}Step 3: Stripping finalizers from ArgoCD Apps to prevent namespace hang...${NC}"
+
+kubectl patch app --all -n argocd -p '{"metadata": {"finalizers": null}}' --type merge 2>/dev/null || true
+kubectl patch appproject --all -n argocd -p '{"metadata": {"finalizers": null}}' --type merge 2>/dev/null || true
+
+echo -e "${CYAN}Step 4: Uninstalling ArgoCD controller components...${NC}"
 kubectl delete -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --ignore-not-found=true || true
 
-echo "Step 4: Deleting argocd namespace..."
+echo -e "${CYAN}Step 5: Deleting argocd namespace...${NC}"
 kubectl delete namespace argocd --ignore-not-found=true || true
 
-echo "Step 5: Checking and Cleaning ArgoCD CRDs..."
+echo -e "${CYAN}Step 6: Checking and Cleaning ArgoCD CRDs...${NC}"
 kubectl get crds -o name | grep 'argoproj.io' | xargs -r kubectl delete || true
 
-echo ""
-echo "======================================================"
-echo "                 Teardown complete!"
-echo "======================================================"
+echo -e ""
+echo -e "${GREEN}${BOLD}======================================================${NC}"
+echo -e "${GREEN}                Teardown complete!${NC}"
+echo -e "${GREEN}${BOLD}======================================================${NC}"
