@@ -5,6 +5,7 @@ type: application
 sources:
 - https://argo-cd.readthedocs.io/en/latest/user-guide/application-specification/
 - http://argo-cd.readthedocs.io/en/latest/operator-manual/project-specification/
+- https://argo-cd.readthedocs.io/en/latest/user-guide/resource_tracking/
 - https://kubernetes.io/docs/concepts/policy/resource-quotas/
 - https://kubernetes.io/docs/tutorials/cluster-management/namespaces-walkthrough/
 version: 0.0.1

@@ -6,4 +6,4 @@ resources:
   - service.yaml
 
 commonLabels:
-  app.kubernetes.io/instance: team-two-app
+  app.kubernetes.io/instance: team-one-app
