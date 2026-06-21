@@ -1,4 +1,39 @@
-### from [argo docs](https://argo-cd.readthedocs.io/en/stable/)
+# Kubernetes Resource Management Lab
+
+## Directions:
+1. Clone the repository using:<br>  `git clone https://gitlab.vulcan.mil/army-software-factory/organization/sose/learning-office/practice-leads/platform-engineering/enablement/beyond-the-tech-accelerator.git`
+2. Create a branch and switch to it to make changes freely:<br>
+`git checkout -b <name-of-branch>`
+3. Switch to docker-desktop (or other local kubernetes cluster):<br>
+`kubectl config use-context docker-desktop`
+4. Run the install.sh script to install ArgoCD and its CRDs:<br>
+`bash install.sh`
+5. To uninstall, run the uninstall.sh script:<br>
+`bash uninstall.sh`
+
+## This Lab includes the following resources:
+- **bootstrap** App-in-apps configuration
+- installation.yaml to pull images and create CRDs
+- Helm chart with the following resource creation:
+  - appProject (**ArgoCD**)
+  - Application (**ArgoCD**)
+  - LimitRange
+  - Namespace
+  - ResourceQuota
+  - pre-configured *values.yaml* to deploy spoke resources
+- spokes folder with a Deployment and Service
+- install.sh 
+- delete.sh 
+
+## Install.sh
+### Environment Variables:
+**ARGO_PASSWORD**:<br> ArgoCD randomly generates a password upon creation; this sets a static password so user can log into the UI easily | default : **admin**
+
+**PORT**:<br> port to designate for port-forward command to access via localhost | default : **8080**
+
+### [argo docs](https://argo-cd.readthedocs.io/en/stable/)
+
+## Below are some manual commands part of the install.sh / delete.sh script
 
 #### argocd installation
 
@@ -17,6 +52,11 @@ kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubuse
 ```
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 ```
+- Then it sets the password to be the `admin` password in the install.sh script
+
+#### It fetches the current git credentials used to push/pull from repo
+`git credential fill` [docs](https://git-scm.com/docs/git-credential#_typical_use_of_git_credential)
+
 
 #### Use the following command to port-forward the ArgoCD Service to browser:
 
