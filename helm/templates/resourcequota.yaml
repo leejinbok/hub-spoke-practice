@@ -8,11 +8,11 @@ metadata:
   namespace: {{ .name }}-ns
 spec:
   hard:
-    pods: {{ .resourceQuota.pods | default "10" | quote }}
-    requests.cpu: {{ .resourceQuota.requests.cpu | default "1" | quote }}
-    requests.memory: {{ .resourceQuota.requests.memory | default "1Gi" | quote }}
-    limits.cpu: {{ .resourceQuota.limits.cpu | default "2" | quote }}
-    limits.memory: {{ .resourceQuota.limits.memory | default "4Gi" | quote }}
+    pods: {{ dig "resourceQuota" "pods" "10" .Values | quote }}
+    requests.cpu: {{ dig "resourceQuota" "requests" "cpu" "1" .Values | quote }}
+    requests.memory: {{ dig "resourceQuota" "requests" "memory" "1Gi" .Values | quote }}
+    limits.cpu: {{ dig "resourceQuota" "limits" "cpu" "2" .Values | quote }}
+    limits.memory: {{ dig "resourceQuota" "limits" "memory" "4Gi" .Values | quote }}
 ---
 {{- end }}
 

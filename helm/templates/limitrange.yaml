@@ -10,14 +10,14 @@ spec:
   limits:
   - type: Container
     max:
-      cpu: {{ .limitRange.max.cpu | default "500m" | quote }}
-      memory: {{ .limitRange.max.memory | default "512Mi" | quote }}
+      cpu: {{ dig "limitRange" "max" "cpu" "500m" .Values | quote }}
+      memory: {{ dig "limitRange" "max" "memory" "512Mi" .Values | quote }}
     min: 
-      cpu: {{ .limitRange.min.cpu | default "100m" | quote }}
-      memory: {{ .limitRange.min.memory | default "128Mi" | quote }}
+      cpu: {{ dig "limitRange" "min" "cpu" "100m" .Values | quote }}
+      memory: {{ dig "limitRange" "min" "memory" "128Mi" .Values | quote }}
     defaultRequest:
-      cpu: {{ .limitRange.defaultRequest.cpu | default "100m" | quote }}
-      memory: {{ .limitRange.defaultRequest.memory | default "128Mi" | quote }}
+      cpu: {{ dig "limitRange" "defaultRequest" "cpu" "100m" .Values | quote }}
+      memory: {{ dig "limitRange" "defaultRequest" "memory" "128Mi" .Values | quote }}
 ---
 {{- end }}
 
