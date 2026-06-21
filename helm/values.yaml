@@ -5,15 +5,16 @@ teams:
     targetPath: 'spokes/team-one'
     targetRevision: 'main'
     resourceQuota:
+      pods: "5"
       requests:
-        cpu: "500m"
-        memory: "500Mi"
+        cpu: "1"
+        memory: "1Gi"
       limits:
-        cpu: "500m"
-        memory: "500Mi"
+        cpu: "2"
+        memory: "2Gi"
     limitRange:
       default:
-        cpu: "500m"
+        cpu: "250m"
         memory: "500Mi"
       defaultRequest:
         cpu: "250m"
@@ -24,16 +25,17 @@ teams:
     targetPath: 'spokes/team-two'
     targetRevision: 'main'
     resourceQuota:
+      pods: "4"
       requests:
-        cpu: "1"
-        memory: "1Gi"
-      limits:
         cpu: "2"
         memory: "2Gi"
+      limits:
+        cpu: "4"
+        memory: "4Gi"
     limitRange:
       default:
-        cpu: "2"
-        memory: "2Gi"
+        cpu: "250m"
+        memory: "500Mi"
       defaultRequest:
-        cpu: "1"
-        memory: "1Gi"
+        cpu: "250m"
+        memory: "500Mi"

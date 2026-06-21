@@ -8,6 +8,7 @@ metadata:
   namespace: {{ .name }}-ns
 spec:
   hard:
+    pods: {{ .resourceQuota.pods | default "3" | quote }}
     requests.cpu: {{ .resourceQuota.requests.cpu | default "500m" | quote }}
     requests.memory: {{ .resourceQuota.requests.memory | default "512Mi" | quote }}
     limits.cpu: {{ .resourceQuota.limits.cpu | default "500m" | quote }}
