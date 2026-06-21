@@ -30,3 +30,12 @@ teams:
       defaultRequest:
         cpu: "250m"
         memory: "500Mi"
+
+  - name: team-three
+    repoURL: 'https://github.com/leejinbok/hub-spoke-practice.git'
+    targetPath: 'spokes/team-three'
+    targetRevision: 'main'
+    limitRange:
+      max:
+        cpu: "100m"
+        memory: "100Mi"
