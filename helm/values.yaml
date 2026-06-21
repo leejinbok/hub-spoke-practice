@@ -6,6 +6,7 @@ teams:
     targetRevision: 'main'
     resourceQuota:
       pods: "5"
+      limits: {}
       requests:
         cpu: "2"
         memory: "4Gi"
@@ -26,6 +27,8 @@ teams:
     targetRevision: 'main'
     resourceQuota:
       pods: "4"
+      limits: {}
+      requests: {}
     limitRange:
       defaultRequest:
         cpu: "250m"
@@ -35,7 +38,13 @@ teams:
     repoURL: 'https://github.com/leejinbok/hub-spoke-practice.git'
     targetPath: 'spokes/team-three'
     targetRevision: 'main'
+    resourceQuotas:
+      pods: {}
+      limits: {}
+      requests: {}
     limitRange:
+      defaultRequest: {}
+      min: {}
       max:
         cpu: "100m"
         memory: "100Mi"
