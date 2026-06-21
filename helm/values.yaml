@@ -7,15 +7,15 @@ teams:
     resourceQuota:
       pods: "5"
       requests:
-        cpu: "1"
-        memory: "1Gi"
-      limits:
         cpu: "2"
-        memory: "2Gi"
+        memory: "4Gi"
     limitRange:
-      default:
-        cpu: "250m"
-        memory: "500Mi"
+      max:
+        cpu: "256m"
+        memory: "200Mi"
+      min:
+        cpu: "100m"
+        memory: "100Mi"
       defaultRequest:
         cpu: "250m"
         memory: "500Mi"
@@ -26,16 +26,7 @@ teams:
     targetRevision: 'main'
     resourceQuota:
       pods: "4"
-      requests:
-        cpu: "2"
-        memory: "2Gi"
-      limits:
-        cpu: "4"
-        memory: "4Gi"
     limitRange:
-      default:
-        cpu: "250m"
-        memory: "500Mi"
       defaultRequest:
         cpu: "250m"
         memory: "500Mi"

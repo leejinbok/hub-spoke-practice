@@ -32,7 +32,7 @@ echo -e "${CYAN}Setting admin password to '${YELLOW}$ARGO_PASSWORD${CYAN}'...${N
 # By default, ArgoCD generates a new admin password each time upon installation
 # ArgoCD uses bcrypt hash; this sets the new password, retrieves the hash, and updates the k8s secret
 # https://argo-cd.readthedocs.io/en/release-2.7/user-guide/commands/argocd_account_bcrypt/
-BCRYPT_HASH=$(echo -n "$ARGO_PASSWORD" | kubectl exec -i -n argocd deployment/argocd-server -- argocd account bcrypt)
+BCRYPT_HASH=$(kubectl exec -n argocd deployment/argocd-server -- argocd account bcrypt --password "$ARGO_PASSWORD")
 kubectl patch secret argocd-secret -n argocd -p '{"stringData": { "admin.password": "'$BCRYPT_HASH'", "admin.passwordMtime": "'$(date +%FT%T%Z)'" }}'
 
 # Restart the server deployment to use new password

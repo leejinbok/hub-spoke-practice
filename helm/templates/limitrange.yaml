@@ -9,12 +9,15 @@ metadata:
 spec:
   limits:
   - type: Container
-    default:
-      cpu: {{ .limitRange.default.cpu | default "500m" | quote }}
-      memory: {{ .limitRange.default.memory | default "512Mi" | quote }}
+    max:
+      cpu: {{ .limitRange.max.cpu | default "500m" | quote }}
+      memory: {{ .limitRange.max.memory | default "512Mi" | quote }}
+    min: 
+      cpu: {{ .limitRange.min.cpu | default "100m" | quote }}
+      memory: {{ .limitRange.min.memory | default "128Mi" | quote }}
     defaultRequest:
-      cpu: {{ .limitRange.defaultRequest.cpu | default "500m" | quote }}
-      memory: {{ .limitRange.defaultRequest.memory | default "512Mi" | quote }}
+      cpu: {{ .limitRange.defaultRequest.cpu | default "100m" | quote }}
+      memory: {{ .limitRange.defaultRequest.memory | default "128Mi" | quote }}
 ---
 {{- end }}
 
