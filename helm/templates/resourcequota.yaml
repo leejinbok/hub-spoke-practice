@@ -1,6 +1,9 @@
 {{- range .Values.teams }}
 
-{{- if .resourceQuota }}
+{{- $rq := .resourceQuota | default dict -}}
+{{- $req := $rq.requests | default dict -}}
+{{- $lim := $rq.limits | default dict -}}
+
 apiVersion: v1
 kind: ResourceQuota
 metadata:
@@ -8,12 +11,10 @@ metadata:
   namespace: {{ .name }}-ns
 spec:
   hard:
-    pods: {{ dig "resourceQuota" "pods" "10" .Values | quote }}
-    requests.cpu: {{ dig "resourceQuota" "requests" "cpu" "1" .Values | quote }}
-    requests.memory: {{ dig "resourceQuota" "requests" "memory" "1Gi" .Values | quote }}
-    limits.cpu: {{ dig "resourceQuota" "limits" "cpu" "2" .Values | quote }}
-    limits.memory: {{ dig "resourceQuota" "limits" "memory" "4Gi" .Values | quote }}
+    pods: {{ $rq.pods | default "10" | quote }}
+    requests.cpu: {{ $req.cpu | default "1" | quote }}
+    requests.memory: {{ $req.memory | default "1Gi" | quote }}
+    limits.cpu: {{ $lim.cpu | default "2" | quote }}
+    limits.memory: {{ $lim.memory | default "4Gi" | quote }}
 ---
-{{- end }}
-
 {{- end }}

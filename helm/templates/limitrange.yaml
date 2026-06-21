@@ -1,6 +1,10 @@
 {{- range .Values.teams }}
 
-{{- if .limitRange }}
+{{- $lr := .limitRange | default dict -}}
+{{- $max := $lr.max | default dict -}}
+{{- $min := $lr.min | default dict -}}
+{{- $defaultReq := $lr.defaultRequest | default dict -}}
+
 apiVersion: v1
 kind: LimitRange
 metadata:
@@ -10,15 +14,13 @@ spec:
   limits:
   - type: Container
     max:
-      cpu: {{ dig "limitRange" "max" "cpu" "500m" .Values | quote }}
-      memory: {{ dig "limitRange" "max" "memory" "512Mi" .Values | quote }}
+      cpu: {{ $max.cpu | default "500m" | quote }}
+      memory: {{ $max.memory | default "512Mi" | quote }}
     min: 
-      cpu: {{ dig "limitRange" "min" "cpu" "100m" .Values | quote }}
-      memory: {{ dig "limitRange" "min" "memory" "128Mi" .Values | quote }}
+      cpu: {{ $min.cpu | default "100m" | quote }}
+      memory: {{ $min.memory | default "128Mi" | quote }}
     defaultRequest:
-      cpu: {{ dig "limitRange" "defaultRequest" "cpu" "100m" .Values | quote }}
-      memory: {{ dig "limitRange" "defaultRequest" "memory" "128Mi" .Values | quote }}
+      cpu: {{ $defaultReq.cpu | default "100m" | quote }}
+      memory: {{ $defaultReq.memory | default "128Mi" | quote }}
 ---
-{{- end }}
-
 {{- end }}
