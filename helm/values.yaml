@@ -8,7 +8,7 @@ teams:
     limitRange:
       max:
         cpu: "500m"
-        memory: "200Mi" # <-- Blocks 250Mi
+        memory: "200Mi" # Blocks 250Mi
       min:
         cpu: "50m"
         memory: "100Mi"
@@ -21,7 +21,7 @@ teams:
     targetPath: 'spokes/team-two'
     targetRevision: 'main'
     resourceQuota:
-      pods: "4"
+      pods: "4" # Blocks 5
 
   - name: team-three
     repoURL: 'https://github.com/leejinbok/hub-spoke-practice.git'
@@ -33,7 +33,7 @@ teams:
         memory: "1Gi"
       min:
         cpu: "50m"
-        memory: "200Mi" # <-- Blocks 128Mi
+        memory: "200Mi" # Blocks 128Mi
       defaultRequest:
         cpu: "100m"
         memory: "300Mi"
