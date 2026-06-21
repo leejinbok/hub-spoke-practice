@@ -1,4 +1,3 @@
-# values.yaml
 teams:
   - name: team-one
     repoURL: 'https://github.com/leejinbok/hub-spoke-practice.git'
@@ -6,20 +5,16 @@ teams:
     targetRevision: 'main'
     resourceQuota:
       pods: "5"
-      limits: {}
-      requests:
-        cpu: "2"
-        memory: "4Gi"
     limitRange:
       max:
-        cpu: "256m"
-        memory: "200Mi"
+        cpu: "500m"
+        memory: "200Mi" # <-- Blocks 250Mi
       min:
-        cpu: "100m"
+        cpu: "50m"
         memory: "100Mi"
       defaultRequest:
-        cpu: "250m"
-        memory: "500Mi"
+        cpu: "100m"
+        memory: "150Mi"
 
   - name: team-two
     repoURL: 'https://github.com/leejinbok/hub-spoke-practice.git'
@@ -27,24 +22,18 @@ teams:
     targetRevision: 'main'
     resourceQuota:
       pods: "4"
-      limits: {}
-      requests: {}
-    limitRange:
-      defaultRequest:
-        cpu: "250m"
-        memory: "500Mi"
 
   - name: team-three
     repoURL: 'https://github.com/leejinbok/hub-spoke-practice.git'
     targetPath: 'spokes/team-three'
     targetRevision: 'main'
-    resourceQuotas:
-      pods: {}
-      limits: {}
-      requests: {}
     limitRange:
-      defaultRequest: {}
-      min: {}
       max:
+        cpu: "500m"
+        memory: "1Gi"
+      min:
+        cpu: "50m"
+        memory: "200Mi" # <-- Blocks 128Mi
+      defaultRequest:
         cpu: "100m"
-        memory: "100Mi"
+        memory: "300Mi"

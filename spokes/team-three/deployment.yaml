@@ -28,7 +28,7 @@ spec:
         args: 
         - |
           echo '<div style="text-align:center; padding:50px; font-family:sans-serif;">
-                  <h1>Welcome to team-one spoke! </h1>
+                  <h1>Welcome to team-three spoke! </h1>
                   <p>This message was generated purely from the Deployment manifest.</p>
                 </div>' > /usr/share/nginx/html/index.html
           
